@@ -1,0 +1,89 @@
+﻿@model IEnumerable<WebSpasialView.Models.TempatViewModel>
+
+@{
+    ViewData["Title"] = "Halaman Map";
+}
+
+<div class="container">
+    <h3 class="display-4" style="text-align:center">Data Tempat</h3>
+    <br />
+    <a asp-area="" asp-controller="Tempat" asp-action="Create">
+        <button type="button" class="btn btn-primary">
+            <i class="fa-solid fa-plus"></i> Tambah Data
+        </button>
+    </a>
+    <br />
+    <br />
+    <table id="tabel1" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th class="text-center" scope="col">
+                    No
+                </th>
+                <th class="text-center" scope="col">
+                    Nama Pemilik
+                </th>
+                <th class="text-center" scope="col">
+                    Nama Tempat
+                </th>
+                <th class="text-center" scope="col">
+                    Alamat
+                </th>
+                <th class="text-center" scope="col">
+                    Jenis Tempat
+                </th>
+                <th class="text-center" scope="col">
+                    Latitude
+                </th>
+                <th class="text-center" scope="col">
+                    Longitude
+                </th>
+                <th class="text-center" scope="col">Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.nama_pemilik)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.nama_tempat)
+                    </td >
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.alamat)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.jenis_tempat)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.latitude)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.longitude)
+                    </td>
+                    <td class="text-center">
+                        <a asp-area="" asp-controller="Tempat" asp-action="Edit" {id=item.id}>
+                            <button type="button" class="btn btn-success">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </button>
+                        </a>
+                        <a asp-area="" asp-controller="Tempat" asp-action="Delete" {id=item.id}>
+                            <button type="button" class="btn btn-danger">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+<br />
+<div id="map" style="width: 100%; height: 400px"></div>
+
